@@ -4,12 +4,23 @@ A simple Kotlin Multiplatform driver for SurrealDB. This driver is a work in pro
 
 ## Usage
 ### Gradle
+build.gradle
 ```kotlin
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("com.surrealdb:surrealdb-kotlin-driver:0.1.0")
+    implementation("uk.gibby:surrealdb-kotlin-driver:0.1.0")
+}
+```
+build.gradle.kts
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "uk.gibby:surrealdb-kotlin-driver:0.1.0"
 }
 ```
