@@ -32,7 +32,7 @@ kotlin {
     macosX64()
     mingwX64()
     linuxX64()
-    js {
+    js(IR) {
         browser()
     }
 
