@@ -3,13 +3,19 @@ import kotlinx.serialization.Serializable
 import uk.gibby.driver.Surreal
 import uk.gibby.driver.rpc.functions.info
 import uk.gibby.driver.rpc.functions.signup
+import uk.gibby.driver.rpc.model.Thing
 import uk.gibby.driver.rpc.model.bind
+import uk.gibby.driver.rpc.model.unknown
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @Serializable
-data class User(val username: String, val password: String)
+data class User(
+    val id: Thing<User> = unknown(),
+    val username: String,
+    val password: String
+)
 
 class InfoTest {
 

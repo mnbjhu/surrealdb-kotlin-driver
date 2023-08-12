@@ -13,7 +13,7 @@ class UnsetTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         connection.let("myKey", "myValue")
         val firstResult = connection.query("RETURN \$myKey;")

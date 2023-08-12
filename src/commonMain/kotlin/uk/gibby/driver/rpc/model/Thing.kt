@@ -6,17 +6,38 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
 
+
+/**
+ * Thing
+ *
+ * A helper class for representing a reference to a Thing.
+ * This is used to represent a reference to a Thing in a record class.
+ * This is useful when using the 'FETCH' statement as when a Thing is fetched it is returned as an [Actual] rather than a [Reference].
+ *
+ * @param T the type of the thing
+ * @property id the id of the thing
+ */
 @Serializable(with = ThingSerializer::class)
 sealed class Thing<T> {
     abstract val id: String
     data class Reference<T>(override val id: String): Thing<T>()
     data class Actual<T>(override val id: String, val result: T): Thing<T>()
 }
+
+/**
+ * Unknown
+ *
+ * A helper method for a creating a blank Thing.
+ * This should be used as the default value for the id field of a record class.
+ *
+ * @param T the type of the thing
+ * @return a blank Thing
+ */
+fun <T>unknown(): Thing<T> = Thing.Reference("unknown")
 
 class ThingSerializer<T: Any>(
     private val tSerializer: KSerializer<T>
@@ -25,10 +46,6 @@ class ThingSerializer<T: Any>(
     @OptIn(ExperimentalSerializationApi::class)
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor(tSerializer.descriptor.serialName + "Link") {
         element("id", String.serializer().descriptor)
-        tSerializer.descriptor.elementNames.forEachIndexed { index, name ->
-            val descriptor = tSerializer.descriptor.getElementDescriptor(index)
-            element(name, descriptor)
-        }
     }
 
     override fun deserialize(decoder: Decoder): Thing<T> {

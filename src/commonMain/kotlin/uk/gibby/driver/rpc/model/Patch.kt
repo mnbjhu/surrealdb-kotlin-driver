@@ -11,6 +11,7 @@ data class JsonPatch(
     val op: Operation,
     val path: String,
     val value: JsonElement? = null,
+    val from: String? = null
 ) {
 
     @Serializable
@@ -55,11 +56,11 @@ data class JsonPatch(
         }
 
         fun move(from: String, path: String) {
-            patches.add(JsonPatch(Operation.MOVE, path, null))
+            patches.add(JsonPatch(Operation.MOVE, path, from = from))
         }
 
         fun copy(from: String, path: String) {
-            patches.add(JsonPatch(Operation.COPY, path, null))
+            patches.add(JsonPatch(Operation.COPY, path, from = from))
         }
 
         fun test(path: String, value: JsonElement) {

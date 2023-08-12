@@ -29,7 +29,7 @@ class SignUpTest {
 
             val connection = Surreal("localhost")
             connection.connect()
-            connection.signIn("root", "root")
+            connection.signin("root", "root")
             connection.use("test", "test")
             connection.query(
                 "DEFINE TABLE user;" +

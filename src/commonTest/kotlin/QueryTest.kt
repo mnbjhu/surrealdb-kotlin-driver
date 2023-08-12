@@ -1,7 +1,7 @@
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
 import uk.gibby.driver.rpc.functions.query
-import uk.gibby.driver.rpc.functions.signIn
+import uk.gibby.driver.rpc.functions.signin
 import uk.gibby.driver.rpc.functions.use
 import uk.gibby.driver.rpc.model.bind
 import uk.gibby.driver.rpc.model.result
@@ -17,7 +17,7 @@ class QueryTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         val response = connection.query("RETURN 'Success';")
         assertEquals(1, response.size)
@@ -29,7 +29,7 @@ class QueryTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         val response = connection.query("RETURN \$test;", bind("test", "test"))
         assertEquals(1, response.size)
@@ -41,7 +41,7 @@ class QueryTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         assertFails {
             connection.query("SOME INVALID QUERY;")

@@ -10,7 +10,7 @@ class ConnectionTest {
     fun connectAsRoot() = runTest {
         val connection = Surreal("localhost", 8000)
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.invalidate()
     }
 
@@ -18,7 +18,7 @@ class ConnectionTest {
     fun connectAsUser() = runTest {
         val connection = Surreal("localhost", 8000)
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         connection.query("REMOVE SCOPE test_scope;")
         connection.query("" +

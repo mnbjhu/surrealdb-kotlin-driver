@@ -1,7 +1,8 @@
 plugins {
     kotlin("multiplatform") version "1.8.21"
     kotlin("plugin.serialization") version "1.8.21"
-    id("maven-publish")
+    id("com.vanniktech.maven.publish") version "0.25.3"
+    signing
 }
 
 group = "uk.gibby"
@@ -9,7 +10,14 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
     google()
+}
+
+buildscript {
+    dependencies{
+        classpath("com.vanniktech:gradle-maven-publish-plugin:0.25.2")
+    }
 }
 
 kotlin {
@@ -100,19 +108,5 @@ kotlin {
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/gibby/ktor-client-websockets")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["kotlin"])
-        }
-    }
+
 }

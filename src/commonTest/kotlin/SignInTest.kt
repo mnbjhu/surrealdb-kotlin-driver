@@ -15,7 +15,7 @@ class SignInTest {
         SignUpTest.configureTestScope()
         connection.signup("test", "test", "test_scope", bind("username", "test_user"), bind("password", "test_password"))
         connection.invalidate()
-        connection.signIn("test", "test", "test_scope", bind("username", "test_user"), bind("password", "test_password"))
+        connection.signin("test", "test", "test_scope", bind("username", "test_user"), bind("password", "test_password"))
     }
 }
 

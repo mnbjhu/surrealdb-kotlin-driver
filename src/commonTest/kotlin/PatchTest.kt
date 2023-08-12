@@ -12,7 +12,7 @@ class PatchTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         connection.create("test").content(TestClass("first", 1))
         connection.create("test").content(TestClass("second", 2))
@@ -27,7 +27,7 @@ class PatchTest {
         cleanDatabase()
         val connection = Surreal("localhost")
         connection.connect()
-        connection.signIn("root", "root")
+        connection.signin("root", "root")
         connection.use("test", "test")
         connection.create("test", "123").content(TestClass("first", 1))
         connection.update("test", "123").patch {
