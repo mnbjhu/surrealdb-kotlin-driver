@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("uk.gibby:surrealdb-kotlin-driver:0.1.0")
+    implementation("uk.gibby:surrealdb-kotlin-driver:$kotlin_driver_version")
 }
 ```
 build.gradle.kts
@@ -23,8 +23,32 @@ repositories {
 }
 
 dependencies {
-    implementation "uk.gibby:surrealdb-kotlin-driver:0.1.0"
+    implementation "uk.gibby:surrealdb-kotlin-driver:$kotlin_driver_version"
 }
 ```
 
-###
+### Example
+Connecting to a SurrealDB instance
+```kotlin
+val db = Surreal("localhost", 8000)
+db.connect()
+db.signin("root", "root")
+// db.signin("ns", "db", "scope", bind("username", "John"), bind("password", "1234"))
+db.use("ns", "db")
+```
+
+Creating a records
+```kotlin
+// Create a record from a JSON object
+db.create("user").content(buildJsonObject( put("username", "John"), put("password", "1234")))
+
+// Create a record from a @Serializable object
+@Serializable
+data class User(val username: String, val password: String)
+
+db.create("user").content(User("John", "1234"))
+```
+
+
+
+
