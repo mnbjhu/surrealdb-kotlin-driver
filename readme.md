@@ -110,9 +110,6 @@ val users = result.first().data<List<User>>()
 In order to interact with id's in a type safe way, you can use `Thing` type.
 
 ```kotlin
-
-import java.time.ZoneId
-
 @Serializable
 data class User(
     val id: Thing<User> = unknown(),
