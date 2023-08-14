@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform") version "1.8.21"
     kotlin("plugin.serialization") version "1.8.21"
     id("com.vanniktech.maven.publish") version "0.25.3"
+    id("org.jetbrains.dokka") version "1.8.20"
     signing
 }
 

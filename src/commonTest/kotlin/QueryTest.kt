@@ -4,7 +4,7 @@ import uk.gibby.driver.rpc.functions.query
 import uk.gibby.driver.rpc.functions.signin
 import uk.gibby.driver.rpc.functions.use
 import uk.gibby.driver.rpc.model.bind
-import uk.gibby.driver.rpc.model.result
+import uk.gibby.driver.rpc.model.data
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -21,7 +21,7 @@ class QueryTest {
         connection.use("test", "test")
         val response = connection.query("RETURN 'Success';")
         assertEquals(1, response.size)
-        assertEquals("Success", response[0].result())
+        assertEquals("Success", response[0].data())
     }
 
     @Test
@@ -33,7 +33,7 @@ class QueryTest {
         connection.use("test", "test")
         val response = connection.query("RETURN \$test;", bind("test", "test"))
         assertEquals(1, response.size)
-        assertEquals("test", response[0].result())
+        assertEquals("test", response[0].data())
     }
 
     @Test

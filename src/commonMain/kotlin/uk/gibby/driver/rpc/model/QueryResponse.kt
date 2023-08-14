@@ -19,7 +19,7 @@ sealed class QueryResponse {
     data class Error(override val time: String, val detail: String): QueryResponse()
 }
 
-inline fun <reified T> QueryResponse.result(): T {
+inline fun <reified T> QueryResponse.data(): T {
     return when (this) {
         is QueryResponse.Success -> surrealJson.decodeFromJsonElement(result)
         is QueryResponse.Error -> throw QueryException(detail)

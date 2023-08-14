@@ -3,7 +3,7 @@ import kotlinx.serialization.Serializable
 import uk.gibby.driver.Surreal
 import uk.gibby.driver.rpc.functions.*
 import uk.gibby.driver.rpc.model.Thing
-import uk.gibby.driver.rpc.model.result
+import uk.gibby.driver.rpc.model.data
 import uk.gibby.driver.rpc.model.unknown
 import utils.cleanDatabase
 import kotlin.test.Test
@@ -68,10 +68,10 @@ class CreateTest {
         val result = connection.query("SELECT * FROM other FETCH linked;")
         val other = result
             .first()
-            .result<List<OtherTest>>()
+            .data<List<OtherTest>>()
             .first()
-        assertTrue { other.linked is Thing.Actual }
-        val linked = other.linked as Thing.Actual<TestClass>
+        assertTrue { other.linked is Thing.Record }
+        val linked = other.linked as Thing.Record<TestClass>
         assertEquals("test", linked.result.myText)
         assertEquals(1, linked.result.myNumber)
 

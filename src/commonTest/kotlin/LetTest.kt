@@ -4,7 +4,7 @@ import uk.gibby.driver.rpc.functions.let
 import uk.gibby.driver.rpc.functions.query
 import uk.gibby.driver.rpc.functions.signin
 import uk.gibby.driver.rpc.functions.use
-import uk.gibby.driver.rpc.model.result
+import uk.gibby.driver.rpc.model.data
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,6 +20,6 @@ class LetTest {
         connection.use("test", "test")
         connection.let("myKey", "myValue")
         val result = connection.query("RETURN \$myKey;")
-        assertEquals("myValue", result.first().result())
+        assertEquals("myValue", result.first().data())
     }
 }
