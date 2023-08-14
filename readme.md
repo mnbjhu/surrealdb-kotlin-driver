@@ -106,6 +106,7 @@ val users = result.first().data<List<User>>()
 ```
 
 <b>Using Record Links</b>
+
 In order to interact with id's in a type safe way, you can use `Thing` type.
 
 ```kotlin
@@ -157,6 +158,6 @@ assert(author.password == "1234")
 
 ## Links
 - [SurrealDB](https://surrealdb.com/)
-- [Api Documentation]()
+- [Api Documentation](https://mnbjhu.github.io/surrealdb-kotlin-driver/api/)
 - [Installing SurrealDB](https://surrealdb.com/docs/installation)
 - [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
