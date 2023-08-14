@@ -13,5 +13,10 @@ sealed class RpcResponse {
 
     @Serializable
     data class Error(override val id: String, val error: JsonElement): RpcResponse()
+
+    @Serializable
+    data class Notification(val result: LiveQueryAction): RpcResponse() {
+        override val id: String? = null
+    }
 }
 
