@@ -16,7 +16,7 @@ import kotlinx.serialization.encoding.decodeStructure
  *
  * A helper class for representing a reference to a Thing.
  * This is used to represent a reference to a Thing in a record class.
- * This is useful when using the 'FETCH' statement as when a Thing is fetched it is returned as an [Actual] rather than a [Reference].
+ * This is useful when using the 'FETCH' statement as when a Thing is fetched it is returned as an [Record] rather than a [Reference].
  *
  * @param T the type of the thing
  * @property id the id of the thing
@@ -25,7 +25,7 @@ import kotlinx.serialization.encoding.decodeStructure
 sealed class Thing<T> {
     abstract val id: String
     data class Reference<T>(override val id: String): Thing<T>()
-    data class Actual<T>(override val id: String, val result: T): Thing<T>()
+    data class Record<T>(override val id: String, val result: T): Thing<T>()
 }
 
 /**
@@ -55,7 +55,7 @@ class ThingSerializer<T: Any>(
             decoder.decodeStructure(descriptor) {
                 id = decodeStringElement(descriptor, 0)
             }
-            Thing.Actual(id!!, result)
+            Thing.Record(id!!, result)
         } catch (e: Exception) {
             Thing.Reference(decoder.decodeString())
         }
@@ -64,7 +64,7 @@ class ThingSerializer<T: Any>(
     override fun serialize(encoder: Encoder, value: Thing<T>) {
         when(value) {
             is Thing.Reference -> encoder.encodeString(value.id)
-            is Thing.Actual -> {
+            is Thing.Record -> {
                 encoder.encodeSerializableValue(tSerializer, value.result)
             }
         }

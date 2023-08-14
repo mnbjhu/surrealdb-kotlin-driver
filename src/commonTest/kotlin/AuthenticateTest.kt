@@ -8,7 +8,7 @@ import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class Authenticate {
+class AuthenticateTest {
 
     @Test
     fun testBasicAuthenticate() = runTest {
