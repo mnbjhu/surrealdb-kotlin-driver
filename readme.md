@@ -3,6 +3,9 @@
 [![Java CI with Gradle](https://github.com/mnbjhu/surrealdb-kotlin-driver/actions/workflows/gradle.yml/badge.svg)](https://github.com/mnbjhu/surrealdb-kotlin-driver/actions/workflows/gradle.yml)
 ## Overview
 A simple Kotlin Multiplatform driver for SurrealDB.
+- Covers all of the SurrealDB Websocket endpoints: [Websocket Docs](https://surrealdb.com/docs/integration/websocket/text).
+- Support for kotlinx.serialization meaning seamless integration between Kotlin and SurrealDB types.
+- Database calls can be made asynchronously
 
 ## Usage
 ### Dependency
