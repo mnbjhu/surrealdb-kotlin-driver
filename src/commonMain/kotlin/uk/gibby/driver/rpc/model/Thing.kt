@@ -9,6 +9,7 @@ import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
+import kotlin.jvm.JvmInline
 
 
 /**
@@ -22,10 +23,12 @@ import kotlinx.serialization.encoding.decodeStructure
  * @property id the id of the thing
  */
 @Serializable(with = ThingSerializer::class)
-sealed class Thing<T> {
-    abstract val id: String
-    data class Reference<T>(override val id: String): Thing<T>()
-    data class Record<T>(override val id: String, val result: T): Thing<T>()
+sealed interface Thing<T> {
+    val id: String
+
+    @JvmInline
+    value class Reference<T>(override val id: String): Thing<T>
+    data class Record<T>(override val id: String, val result: T): Thing<T>
 }
 
 /**
