@@ -39,6 +39,11 @@ jobs:
           VERSION=$(git tag --sort=committerdate | tail -1)
           echo Generating API documentation for version $VERSION
           ./gradlew -Pversion=$VERSION dokkaHtml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: |
+            build/test-results/**/*.xml
       - name: Deploy API documentation to Github Pages
         if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
         uses: JamesIves/github-pages-deploy-action@v4
