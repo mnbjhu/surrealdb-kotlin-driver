@@ -74,6 +74,5 @@ class CreateTest {
         val linked = other.linked as Thing.Record<TestClass>
         assertEquals("test", linked.result.myText)
         assertEquals(1, linked.result.myNumber)
-
     }
 }

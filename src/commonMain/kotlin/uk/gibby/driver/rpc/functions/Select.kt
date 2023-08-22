@@ -2,8 +2,8 @@ package uk.gibby.driver.rpc.functions
 
 import kotlinx.serialization.json.*
 import uk.gibby.driver.Surreal
+import uk.gibby.driver.rpc.model.Thing
 import uk.gibby.driver.surrealJson
-import kotlin.jvm.JvmName
 
 /**
  * Select
@@ -12,8 +12,7 @@ import kotlin.jvm.JvmName
  *
  * @return The records in the table
  */
-@JvmName("selectJson")
-suspend fun Surreal.select(table: String): JsonArray {
+suspend fun Surreal.selectAsJson(table: String): JsonArray {
     return sendRequest("select", buildJsonArray { add(table) }) as JsonArray
 }
 
@@ -26,7 +25,7 @@ suspend fun Surreal.select(table: String): JsonArray {
  * @return The records in the table
  */
 suspend inline fun <reified T>Surreal.select(table: String): List<T> {
-    val response = select(table)
+    val response = selectAsJson(table)
     return surrealJson.decodeFromJsonElement(response)
 }
 
@@ -39,9 +38,20 @@ suspend inline fun <reified T>Surreal.select(table: String): List<T> {
  * @param id The id of the record to select
  * @return The record in the table
  */
-@JvmName("selectIdJson")
-suspend fun Surreal.select(table: String, id: String): JsonObject {
+suspend fun Surreal.selectAsJson(table: String, id: String): JsonObject {
     return sendRequest("select", buildJsonArray { add("$table:$id") }) as JsonObject
+}
+
+/**
+ * Select
+ *
+ * Select a specific record in a table.
+ *
+ * @param id The id of the record to select
+ * @return The record in the table
+ */
+suspend fun Surreal.selectAsJson(id: Thing<*>): JsonObject {
+    return sendRequest("select", buildJsonArray { add(id.id) }) as JsonObject
 }
 
 
@@ -56,6 +66,20 @@ suspend fun Surreal.select(table: String, id: String): JsonObject {
  * @return The record in the table
  */
 suspend inline fun <reified T>Surreal.select(table: String, id: String): T {
-    val response = select(table, id)
+    val response = selectAsJson(table, id)
+    return surrealJson.decodeFromJsonElement(response)
+}
+
+/**
+ * Select
+ *
+ * Select a specific record in a table.
+ *
+ * @param id The id of the record to select
+ * @param T The type of the record
+ * @return The record in the table
+ */
+suspend inline fun <reified T>Surreal.select(id: Thing<T>): T {
+    val response = selectAsJson(id)
     return surrealJson.decodeFromJsonElement(response)
 }

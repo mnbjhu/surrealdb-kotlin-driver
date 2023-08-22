@@ -36,4 +36,19 @@ class PatchTest {
         val result = connection.select<TestClass>("test", "123")
         assertEquals("updated", result.myText)
     }
+
+    @Test
+    fun testPatchWithThing() = runTest {
+        cleanDatabase()
+        val connection = Surreal("localhost")
+        connection.connect()
+        connection.signin("root", "root")
+        connection.use("test", "test")
+        val thing = connection.create("test").content(TestClass("first", 1))
+        connection.update(thing.id).patch {
+            replace("myText", "updated")
+        }
+        val result = connection.select(thing.id)
+        assertEquals("updated", result.myText)
+    }
 }

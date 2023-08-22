@@ -36,4 +36,17 @@ class SelectTest {
         assertEquals("first", result.myText)
         assertEquals(1, result.myNumber)
     }
+
+    @Test
+    fun testSelectThing() = runTest {
+        cleanDatabase()
+        val connection = Surreal("localhost")
+        connection.connect()
+        connection.signin("root", "root")
+        connection.use("test", "test")
+        val thing = connection.create("test").content(TestClass("first", 1))
+        val result = connection.select<TestClass>(thing.id)
+        assertEquals("first", result.myText)
+        assertEquals(1, result.myNumber)
+    }
 }
