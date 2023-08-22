@@ -33,4 +33,17 @@ class DeleteTest {
         val result = connection.select<TestClass>("test")
         assertEquals(0, result.size)
     }
+
+    @Test
+    fun testDeleteThing() = runTest {
+        cleanDatabase()
+        val connection = Surreal("localhost")
+        connection.connect()
+        connection.signin("root", "root")
+        connection.use("test", "test")
+        val thing = connection.create("test").content(TestClass("first", 1))
+        connection.delete(thing.id)
+        val result = connection.select<TestClass>("test")
+        assertEquals(0, result.size)
+    }
 }
