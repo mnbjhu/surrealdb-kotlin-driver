@@ -3,6 +3,7 @@ package uk.gibby.driver.rpc.functions
 import kotlinx.serialization.json.add
 import kotlinx.serialization.json.buildJsonArray
 import uk.gibby.driver.Surreal
+import uk.gibby.driver.rpc.model.Thing
 
 /**
  * Delete
@@ -25,4 +26,15 @@ suspend fun Surreal.delete(table: String) {
  */
 suspend fun Surreal.delete(table: String, id: String) {
     sendRequest("delete", buildJsonArray { add("$table:$id") })
+}
+
+/**
+ * Delete
+ *
+ * Deletes a specific record in a table
+ *
+ * @param id The id of the record to delete
+ */
+suspend fun Surreal.delete(id: Thing<*>) {
+    sendRequest("delete", buildJsonArray { add(id.id) })
 }
