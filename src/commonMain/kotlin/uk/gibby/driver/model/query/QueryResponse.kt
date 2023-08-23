@@ -1,10 +1,10 @@
-package uk.gibby.driver.rpc.model
+package uk.gibby.driver.model.query
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.decodeFromJsonElement
-import uk.gibby.driver.rpc.exception.QueryException
+import uk.gibby.driver.exception.QueryException
 import uk.gibby.driver.surrealJson
 
 @Serializable

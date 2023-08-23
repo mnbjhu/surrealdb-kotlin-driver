@@ -1,4 +1,4 @@
-package uk.gibby.driver.rpc.model
+package uk.gibby.driver.model.query
 
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement

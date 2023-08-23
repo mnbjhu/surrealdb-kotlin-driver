@@ -1,4 +1,4 @@
-package uk.gibby.driver.rpc.functions
+package uk.gibby.driver.rpc
 
 import kotlinx.serialization.json.*
 import uk.gibby.driver.Surreal

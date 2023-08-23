@@ -1,9 +1,12 @@
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.Serializable
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.*
-import uk.gibby.driver.rpc.model.Thing
-import uk.gibby.driver.rpc.model.data
+import uk.gibby.driver.model.Thing
+import uk.gibby.driver.model.query.data
+import uk.gibby.driver.rpc.create
+import uk.gibby.driver.rpc.query
+import uk.gibby.driver.rpc.signin
+import uk.gibby.driver.rpc.use
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,4 +1,4 @@
-package uk.gibby.driver.rpc.model
+package uk.gibby.driver.model
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer

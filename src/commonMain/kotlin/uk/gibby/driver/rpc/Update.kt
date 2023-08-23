@@ -1,12 +1,12 @@
-package uk.gibby.driver.rpc.functions
+package uk.gibby.driver.rpc
 
 import kotlinx.serialization.json.*
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.model.Bind
-import uk.gibby.driver.rpc.model.JsonPatch
-import uk.gibby.driver.rpc.model.Thing
+import uk.gibby.driver.model.query.Bind
+import uk.gibby.driver.model.JsonPatch
 import uk.gibby.driver.surrealJson
 import kotlin.jvm.JvmName
+import uk.gibby.driver.model.Thing
 
 
 /**
@@ -150,6 +150,7 @@ fun Surreal.update(table: String) = UpdateBuilder(table, this)
  *
  * This class is used to build update requests affecting a single record in a table.
  *
+ * @property table The table to update
  * @property id The id of the record to update
  * @property db The database connection to use
  * @constructor Creates an update builder for the given table and id

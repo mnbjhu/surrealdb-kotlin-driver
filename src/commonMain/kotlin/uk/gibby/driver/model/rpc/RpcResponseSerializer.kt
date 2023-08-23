@@ -1,4 +1,4 @@
-package uk.gibby.driver.rpc.model
+package uk.gibby.driver.model.rpc
 
 import uk.gibby.driver.surrealJson
 import kotlinx.serialization.KSerializer
@@ -11,6 +11,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.encodeToJsonElement
 
 object RpcResponseSerializer: KSerializer<RpcResponse> {
@@ -35,7 +36,12 @@ object RpcResponseSerializer: KSerializer<RpcResponse> {
         }
         return if(error != null) {
             RpcResponse.Error(id!!, surrealJson.encodeToJsonElement(error))
-        } else RpcResponse.Success(id!!, result ?: surrealJson.encodeToJsonElement(String.serializer().nullable, null))
+        } else if(id != null) {
+            RpcResponse.Success(id!!, result ?: surrealJson.encodeToJsonElement(String.serializer().nullable, null))
+        }
+        else {
+            RpcResponse.Notification(surrealJson.decodeFromJsonElement(result!!))
+        }
     }
 
     override fun serialize(encoder: Encoder, value: RpcResponse) {

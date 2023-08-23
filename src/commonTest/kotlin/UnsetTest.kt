@@ -1,7 +1,7 @@
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.*
-import uk.gibby.driver.rpc.model.data
+import uk.gibby.driver.model.query.data
+import uk.gibby.driver.rpc.*
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals

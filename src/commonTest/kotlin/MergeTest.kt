@@ -2,8 +2,11 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.*
-import uk.gibby.driver.rpc.model.bind
+import uk.gibby.driver.model.query.bind
+import uk.gibby.driver.rpc.create
+import uk.gibby.driver.rpc.signin
+import uk.gibby.driver.rpc.update
+import uk.gibby.driver.rpc.use
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals

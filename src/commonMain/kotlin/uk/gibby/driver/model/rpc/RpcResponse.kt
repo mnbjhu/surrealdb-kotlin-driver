@@ -1,4 +1,4 @@
-package uk.gibby.driver.rpc.model
+package uk.gibby.driver.model.rpc
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
@@ -13,5 +13,10 @@ sealed class RpcResponse {
 
     @Serializable
     data class Error(override val id: String, val error: JsonElement): RpcResponse()
+
+    @Serializable
+    data class Notification(val result: LiveQueryAction<JsonElement>): RpcResponse() {
+        override val id: String? = null
+    }
 }
 
