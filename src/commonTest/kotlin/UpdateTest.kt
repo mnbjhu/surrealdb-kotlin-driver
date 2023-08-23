@@ -41,4 +41,16 @@ class UpdateTest {
         assertEquals(-1, result.myNumber)
     }
 
+    @Test
+    fun testUpdateThing() = runTest {
+        cleanDatabase()
+        val connection = Surreal("localhost")
+        connection.connect()
+        connection.signin("root", "root")
+        connection.use("test", "test")
+        val thing = connection.create("test").content(TestClass("first", 1))
+        val result = connection.update(thing.id).content(TestClass("updated", -1))
+        assertEquals("updated", result.myText)
+        assertEquals(-1, result.myNumber)
+    }
 }

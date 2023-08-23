@@ -6,6 +6,7 @@ import uk.gibby.driver.model.query.Bind
 import uk.gibby.driver.model.JsonPatch
 import uk.gibby.driver.surrealJson
 import kotlin.jvm.JvmName
+import uk.gibby.driver.model.Thing
 
 
 /**
@@ -154,7 +155,7 @@ fun Surreal.update(table: String) = UpdateBuilder(table, this)
  * @property db The database connection to use
  * @constructor Creates an update builder for the given table and id
  */
-class UpdateIdBuilder(private val table: String, private val id: String, private val db: Surreal) {
+class UpdateIdBuilder(private val id: String, private val db: Surreal) {
 
     /**
      * Content
@@ -166,7 +167,7 @@ class UpdateIdBuilder(private val table: String, private val id: String, private
      */
     suspend fun jsonContent(data: JsonElement): JsonObject {
         return db.sendRequest("update", buildJsonArray {
-            add("$table:$id")
+            add(id)
             add(data)
         }) as JsonObject
     }
@@ -196,7 +197,7 @@ class UpdateIdBuilder(private val table: String, private val id: String, private
     @JvmName("mergeJson")
     suspend fun merge(data: JsonObject): JsonObject {
         return db.sendRequest("merge", buildJsonArray {
-            add("$table:$id")
+            add(id)
             add(data)
         }) as JsonObject
     }
@@ -226,7 +227,7 @@ class UpdateIdBuilder(private val table: String, private val id: String, private
     @JvmName("mergeBindJson")
     suspend fun merge(vararg data: Bind): JsonObject {
         return db.sendRequest("merge", buildJsonArray {
-            add("$table:$id")
+            add(id)
             add(
                 buildJsonObject {
                     data.forEach {
@@ -264,7 +265,7 @@ class UpdateIdBuilder(private val table: String, private val id: String, private
         val builder = JsonPatch.Builder()
         builder.patchBuilder()
         val result = db.sendRequest("patch", buildJsonArray {
-            add("$table:$id")
+            add(id)
             add(surrealJson.encodeToJsonElement(builder.build()))
         })
         return surrealJson.decodeFromJsonElement(result)
@@ -280,4 +281,14 @@ class UpdateIdBuilder(private val table: String, private val id: String, private
  * @param table The table to update
  * @param id The id of the record to update
  */
-fun Surreal.update(table: String, id: String) = UpdateIdBuilder(table, id, this)
+fun Surreal.update(table: String, id: String) = UpdateIdBuilder("$table:$id", this)
+
+/**
+ * Update
+ *
+ * Creates an update builder for the given table and id.
+ *
+ * @param id The id of the record to update
+ */
+fun Surreal.update(id: Thing<*>) = UpdateIdBuilder(id.id, this)
+
