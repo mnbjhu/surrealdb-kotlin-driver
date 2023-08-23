@@ -3,7 +3,7 @@ package uk.gibby.driver.rpc
 import kotlinx.serialization.json.add
 import kotlinx.serialization.json.buildJsonArray
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.model.Thing
+import uk.gibby.driver.model.Thing
 
 /**
  * Delete

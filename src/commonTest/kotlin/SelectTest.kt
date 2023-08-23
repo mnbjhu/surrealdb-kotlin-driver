@@ -1,7 +1,6 @@
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
 import uk.gibby.driver.rpc.create
-import uk.gibby.driver.rpc.functions.*
 import uk.gibby.driver.rpc.select
 import uk.gibby.driver.rpc.signin
 import uk.gibby.driver.rpc.use
