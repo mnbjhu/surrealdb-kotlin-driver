@@ -6,11 +6,10 @@ import uk.gibby.driver.rpc.live
 import uk.gibby.driver.rpc.signin
 import uk.gibby.driver.rpc.use
 import utils.cleanDatabase
-import kotlin.test.Ignore
 import kotlin.test.Test
 
+@OptIn(SurrealDbNightlyOnlyApi::class)
 class KillTest {
-    @OptIn(SurrealDbNightlyOnlyApi::class)
     @Test
     fun testKill() = runTest {
         cleanDatabase()

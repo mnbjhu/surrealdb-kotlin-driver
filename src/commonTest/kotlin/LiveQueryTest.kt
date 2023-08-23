@@ -54,7 +54,7 @@ class LiveQueryTest {
         connection.use("test", "test")
         val result = connection.query("LIVE SELECT * FROM test;")
         val liveQueryId = result.first().data<String>()
-        val incoming = connection.subscribeToTable<TestClass>(liveQueryId)
+        val incoming = connection.subscribe<TestClass>(liveQueryId)
 
         connection.create("test", "first").content(TestClass("thing", 1))
         connection.create("test", "second").content(TestClass("thing", 2))
@@ -88,7 +88,7 @@ class LiveQueryTest {
         connection.signin("root", "root")
         connection.use("test", "test")
         val liveQueryId = connection.live("test")
-        val incoming = connection.subscribeToTable<TestClass>(liveQueryId)
+        val incoming = connection.subscribe<TestClass>(liveQueryId)
 
         connection.create("test", "first").content(TestClass("thing", 1))
         connection.create("test", "second").content(TestClass("thing", 2))
