@@ -1,10 +1,10 @@
 package utils
 
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.invalidate
-import uk.gibby.driver.rpc.functions.query
-import uk.gibby.driver.rpc.functions.signin
-import uk.gibby.driver.rpc.functions.use
+import uk.gibby.driver.rpc.invalidate
+import uk.gibby.driver.rpc.query
+import uk.gibby.driver.rpc.signin
+import uk.gibby.driver.rpc.use
 
 suspend fun cleanDatabase() {
     val connection = Surreal("localhost")

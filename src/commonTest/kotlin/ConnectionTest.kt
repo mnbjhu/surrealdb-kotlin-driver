@@ -1,7 +1,8 @@
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.*
-import uk.gibby.driver.rpc.model.bind
+import uk.gibby.driver.model.query.bind
+import uk.gibby.driver.rpc.*
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class ConnectionTest {

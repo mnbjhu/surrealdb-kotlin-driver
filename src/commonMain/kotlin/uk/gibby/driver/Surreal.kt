@@ -8,9 +8,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.json.*
-import uk.gibby.driver.rpc.exception.LiveQueryKilledException
-import uk.gibby.driver.rpc.functions.kill
-import uk.gibby.driver.rpc.model.*
+import uk.gibby.driver.exception.LiveQueryKilledException
+import uk.gibby.driver.model.rpc.*
+import uk.gibby.driver.rpc.kill
 
 /**
  * SurrealDB driver
@@ -41,6 +41,7 @@ class Surreal(private val host: String, private val port: Int = 8000) {
             context.launch {
                 it.incoming.receiveAsFlow().collect {
                     it as Frame.Text
+                    println(it.readText())
                     val response = try {
                         surrealJson.decodeFromString(RpcResponseSerializer, it.readText())
                     } catch (e: Exception) {
@@ -96,17 +97,18 @@ class Surreal(private val host: String, private val port: Int = 8000) {
         val request = RpcRequest(id, method, params)
         val channel = Channel<JsonElement>(1)
         requests[id] = channel
+        println(request)
         (connection ?: throw Exception("SurrealDB: Websocket not connected")).sendSerialized(request)
         return channel.receive()
     }
 
-    fun subscribeAsJson(liveQueryId: String): Flow<LiveQueryAction<JsonElement>> {
+    fun subscribeToTableAsJson(liveQueryId: String): Flow<LiveQueryAction<JsonElement>> {
         val channel = liveQueries.getOrPut(liveQueryId) { Channel() }
         return channel.receiveAsFlow()
     }
 
-    inline fun <reified T> subscribe(liveQueryId: String): Flow<LiveQueryAction<T>> {
-        return subscribeAsJson(liveQueryId).map { it.asType() }
+    inline fun <reified T> subscribeToTable(liveQueryId: String): Flow<LiveQueryAction<T>> {
+        return subscribeToTableAsJson(liveQueryId).map { it.asType() }
     }
 
     fun unsubscribe(liveQueryId: String) {

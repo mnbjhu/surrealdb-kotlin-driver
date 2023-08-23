@@ -1,10 +1,10 @@
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.rpc.functions.let
-import uk.gibby.driver.rpc.functions.query
-import uk.gibby.driver.rpc.functions.signin
-import uk.gibby.driver.rpc.functions.use
-import uk.gibby.driver.rpc.model.data
+import uk.gibby.driver.rpc.let
+import uk.gibby.driver.rpc.query
+import uk.gibby.driver.rpc.signin
+import uk.gibby.driver.rpc.use
+import uk.gibby.driver.model.query.data
 import utils.cleanDatabase
 import kotlin.test.Test
 import kotlin.test.assertEquals
