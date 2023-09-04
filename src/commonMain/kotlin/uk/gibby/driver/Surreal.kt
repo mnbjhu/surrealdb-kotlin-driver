@@ -8,7 +8,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.json.*
-import uk.gibby.driver.annotation.SurrealDbNightlyOnlyApi
 import uk.gibby.driver.exception.LiveQueryKilledException
 import uk.gibby.driver.model.rpc.*
 import uk.gibby.driver.rpc.kill
@@ -103,25 +102,21 @@ class Surreal(private val host: String, private val port: Int = 8000) {
         return channel.receive()
     }
 
-    @SurrealDbNightlyOnlyApi
     fun subscribeAsJson(liveQueryId: String): Flow<LiveQueryAction<JsonElement>> {
         val channel = liveQueries.getOrPut(liveQueryId) { Channel() }
         return channel.receiveAsFlow()
     }
 
-    @SurrealDbNightlyOnlyApi
     inline fun <reified T> subscribe(liveQueryId: String): Flow<LiveQueryAction<T>> {
         return subscribeAsJson(liveQueryId).map { it.asType() }
     }
 
-    @SurrealDbNightlyOnlyApi
     fun unsubscribe(liveQueryId: String) {
         val channel = liveQueries[liveQueryId]
         channel?.cancel(LiveQueryKilledException)
         liveQueries.remove(liveQueryId)
     }
 
-    @SurrealDbNightlyOnlyApi
     internal fun triggerKill(liveQueryId: String) {
         context.launch { kill(liveQueryId) }
     }

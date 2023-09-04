@@ -4,7 +4,6 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.annotation.SurrealDbNightlyOnlyApi
 import uk.gibby.driver.model.rpc.LiveQueryAction
 
 /**
@@ -18,7 +17,6 @@ import uk.gibby.driver.model.rpc.LiveQueryAction
  * @property connection The connection to the database
  * @constructor Creates a new live query flow
  */
-@SurrealDbNightlyOnlyApi
 class LiveQueryFlow<T>(
     private val flow: Flow<LiveQueryAction<T>>,
     val id: String,

@@ -1,7 +1,6 @@
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.annotation.SurrealDbNightlyOnlyApi
 import uk.gibby.driver.api.observeLiveQuery
 import uk.gibby.driver.exception.LiveQueryKilledException
 import uk.gibby.driver.model.rpc.LiveQueryAction
@@ -11,7 +10,6 @@ import uk.gibby.driver.rpc.*
 import utils.cleanDatabase
 import kotlin.test.*
 
-@OptIn(SurrealDbNightlyOnlyApi::class)
 class LiveQueryTest {
     @Test
     fun testObserve() = runTest {
