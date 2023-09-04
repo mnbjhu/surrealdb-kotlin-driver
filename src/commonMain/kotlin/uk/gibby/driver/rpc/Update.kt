@@ -130,6 +130,7 @@ class UpdateBuilder(private val table: String, private val db: Surreal) {
         val response = db.sendRequest("patch", buildJsonArray {
             add(table)
             add(surrealJson.encodeToJsonElement(builder.build()))
+            add(true)
         })
         return surrealJson.decodeFromJsonElement(response)
     }
@@ -267,6 +268,7 @@ class UpdateIdBuilder(private val id: String, private val db: Surreal) {
         val result = db.sendRequest("patch", buildJsonArray {
             add(id)
             add(surrealJson.encodeToJsonElement(builder.build()))
+            add(true)
         })
         return surrealJson.decodeFromJsonElement(result)
     }
