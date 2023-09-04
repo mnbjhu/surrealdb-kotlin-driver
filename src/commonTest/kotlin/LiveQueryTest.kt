@@ -22,7 +22,7 @@ class LiveQueryTest {
         val incoming = connection.observeLiveQuery<TestClass>("test")
         connection.create("test", "first").content(TestClass("thing", 1))
         connection.create("test", "second").content(TestClass("thing", 2))
-        connection.update("test", "first").patch {
+        connection.update("test", "first").patchWithDiff {
             replace("myText", "thing2")
         }
         connection.delete("test", "second")
@@ -56,7 +56,7 @@ class LiveQueryTest {
 
         connection.create("test", "first").content(TestClass("thing", 1))
         connection.create("test", "second").content(TestClass("thing", 2))
-        connection.update("test", "first").patch {
+        connection.update("test", "first").patchWithDiff {
             replace("myText", "thing2")
         }
         connection.delete("test", "second")
@@ -90,7 +90,7 @@ class LiveQueryTest {
 
         connection.create("test", "first").content(TestClass("thing", 1))
         connection.create("test", "second").content(TestClass("thing", 2))
-        connection.update("test", "first").patch {
+        connection.update("test", "first").patchWithDiff {
             replace("myText", "thing2")
         }
         connection.delete("test", "second")

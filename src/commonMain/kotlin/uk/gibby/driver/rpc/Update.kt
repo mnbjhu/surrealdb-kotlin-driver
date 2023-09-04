@@ -117,14 +117,49 @@ class UpdateBuilder(private val table: String, private val db: Surreal) {
     }
 
     /**
+     * Patch as json
+     *
+     * Patches all records in a table with the given Json patch.
+     *
+     * @param patchBuilder A json patch DSL to build the patch
+     * @receiver The update builder
+     * @return The records changed by the patch
+     */
+    suspend fun patchAsJson(patchBuilder: JsonPatch.Builder.() -> Unit): JsonArray {
+        val builder = JsonPatch.Builder()
+        builder.patchBuilder()
+        val response = db.sendRequest("patch", buildJsonArray {
+            add(table)
+            add(surrealJson.encodeToJsonElement(builder.build()))
+            add(false)
+        })
+        return surrealJson.decodeFromJsonElement(response)
+    }
+
+    /**
      * Patch
+     *
+     * Patches all records in a table with the given Json patch.
+     *
+     * @param T The type of the returned records
+     * @param patchBuilder A json patch DSL to build the patch
+     * @receiver The update builder
+     * @return The records changed by the patch
+     */
+    suspend inline fun <reified T>patch(noinline patchBuilder: JsonPatch.Builder.() -> Unit): List<T> {
+        val response = patchAsJson(patchBuilder)
+        return surrealJson.decodeFromJsonElement(response)
+    }
+
+    /**
+     * Patch with diff
      *
      * Patches all records in a table with the given Json patch.
      *
      * @param patchBuilder A json patch DSL to build the patch
      * @return The patches applied to the records
      */
-    suspend fun patch(patchBuilder: JsonPatch.Builder.() -> Unit): List<List<JsonPatch>> {
+    suspend fun patchWithDiff(patchBuilder: JsonPatch.Builder.() -> Unit): List<List<JsonPatch>> {
         val builder = JsonPatch.Builder()
         builder.patchBuilder()
         val response = db.sendRequest("patch", buildJsonArray {
@@ -260,9 +295,42 @@ class UpdateIdBuilder(private val id: String, private val db: Surreal) {
      * Patches a single record in a table with the given Json patch.
      *
      * @param patchBuilder A json patch DSL to build the patch
+     * @return The records changed by the patch
+     */
+    suspend fun patchAsJson(patchBuilder: JsonPatch.Builder.() -> Unit): JsonElement {
+        val builder = JsonPatch.Builder()
+        builder.patchBuilder()
+        return db.sendRequest("patch", buildJsonArray {
+            add(id)
+            add(surrealJson.encodeToJsonElement(builder.build()))
+            add(false)
+        })
+    }
+
+    /**
+     * Patch
+     *
+     * Patches a single record in a table with the given Json patch.
+     *
+     * @param T The type of the returned records
+     * @param patchBuilder A json patch DSL to build the patch
+     * @receiver The update builder
+     * @return The records changed by the patch
+     */
+    suspend inline fun <reified T>patch(noinline patchBuilder: JsonPatch.Builder.() -> Unit): T {
+        val response = patchAsJson(patchBuilder)
+        return surrealJson.decodeFromJsonElement(response)
+    }
+
+    /**
+     * Patch with diff
+     *
+     * Patches a single record in a table with the given Json patch.
+     *
+     * @param patchBuilder A json patch DSL to build the patch
      * @return The patches applied to the record
      */
-    suspend fun patch(patchBuilder: JsonPatch.Builder.() -> Unit): List<JsonPatch> {
+    suspend fun patchWithDiff(patchBuilder: JsonPatch.Builder.() -> Unit): List<JsonPatch> {
         val builder = JsonPatch.Builder()
         builder.patchBuilder()
         val result = db.sendRequest("patch", buildJsonArray {
@@ -272,7 +340,6 @@ class UpdateIdBuilder(private val id: String, private val db: Surreal) {
         })
         return surrealJson.decodeFromJsonElement(result)
     }
-
 }
 
 /**
