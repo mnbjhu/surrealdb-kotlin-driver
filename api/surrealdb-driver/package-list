@@ -166,6 +166,8 @@ $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/jsonContent/#kotlinx.serializa
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/merge/#kotlin.Array[kotlin.Pair[kotlin.String,kotlinx.serialization.json.JsonElement]]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/merge.html
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/merge/#kotlinx.serialization.json.JsonObject/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/merge.html
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/patch/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/patch.html
+$dokka.location:uk.gibby.driver.rpc/UpdateBuilder/patchAsJson/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/patch-as-json.html
+$dokka.location:uk.gibby.driver.rpc/UpdateBuilder/patchWithDiff/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/patch-with-diff.html
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder///PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/index.html
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/UpdateIdBuilder/#kotlin.String#uk.gibby.driver.Surreal/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/-update-id-builder.html
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/content/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/content.html
@@ -173,6 +175,8 @@ $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/jsonContent/#kotlinx.seriali
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/merge/#kotlin.Array[kotlin.Pair[kotlin.String,kotlinx.serialization.json.JsonElement]]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/merge.html
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/merge/#kotlinx.serialization.json.JsonObject/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/merge.html
 $dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/patch/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/patch.html
+$dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/patchAsJson/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/patch-as-json.html
+$dokka.location:uk.gibby.driver.rpc/UpdateIdBuilder/patchWithDiff/#kotlin.Function1[uk.gibby.driver.model.JsonPatch.Builder,kotlin.Unit]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-id-builder/patch-with-diff.html
 $dokka.location:uk.gibby.driver////PointingToDeclaration/surrealdb-driver/uk.gibby.driver/index.html
 $dokka.location:uk.gibby.driver//surrealJson/#/PointingToDeclaration/surrealdb-driver/uk.gibby.driver/surreal-json.html
 $dokka.location:uk.gibby.driver/Surreal///PointingToDeclaration/surrealdb-driver/uk.gibby.driver/-surreal/index.html
