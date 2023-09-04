@@ -2,7 +2,6 @@ package uk.gibby.driver.api
 
 import kotlinx.serialization.json.JsonElement
 import uk.gibby.driver.Surreal
-import uk.gibby.driver.annotation.SurrealDbNightlyOnlyApi
 import uk.gibby.driver.rpc.live
 import uk.gibby.driver.model.rpc.asType
 import kotlin.jvm.JvmName
@@ -16,7 +15,6 @@ import kotlin.jvm.JvmName
  * @return A [LiveQueryFlow] of [JsonElement]s
  */
 @JvmName("observeJson")
-@SurrealDbNightlyOnlyApi
 suspend fun Surreal.observeLiveQueryAsJson(table: String): LiveQueryFlow<JsonElement> {
     val liveQueryId = live(table)
     return LiveQueryFlow(
@@ -36,7 +34,6 @@ suspend fun Surreal.observeLiveQueryAsJson(table: String): LiveQueryFlow<JsonEle
  * @param table Name of the table to 'LIVE SELECT' from
  * @return A [LiveQueryFlow] of [T]s
  */
-@SurrealDbNightlyOnlyApi
 suspend inline fun <reified T>Surreal.observeLiveQuery(table: String): LiveQueryFlow<T> {
     val jsonFlow = observeLiveQueryAsJson(table)
     return jsonFlow.map { it.asType<T>() }
