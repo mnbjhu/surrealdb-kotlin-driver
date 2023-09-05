@@ -156,6 +156,41 @@ assert(author.username == "John")
 assert(author.password == "1234")
 ```
 
+<b>Live Queries</b>
+
+Basic Usage:
+```kotlin
+// You can listen to changes in a table using the observeLiveQuery function
+val incoming: LiveQueryFlow<User> = db.observeLiveQuery("user")
+// Each frame contains the type of change and the updated record
+incoming.collect { frame ->
+    when (frame) {
+        is LiveQueryAction.Create -> {
+            println("New record created")
+        }
+        is LiveQueryAction.Update -> {
+            println("Record updated")
+        }
+        is LiveQueryAction.Delete -> {
+            println("Record deleted")
+        }
+    }
+}
+// LiveQueryFlow implements to Closeable interface
+incoming.close()
+```
+
+For more control you can use the regular query method and subscribe to updates manually:
+```kotlin
+val result = db.query(
+    "LIVE SELECT * FROM user WHERE username = \$username",
+    bind("username", "John")
+)
+val liveQueryId = result.first().data<String>()
+val incoming = db.subscribe<TestClass>(liveQueryId)
+db.kill(liveQueryId)
+db.unsubscribe(liveQueryId)
+```
 ## Links
 - [SurrealDB](https://surrealdb.com/)
 - [Api Documentation](https://mnbjhu.github.io/surrealdb-kotlin-driver/api/)
