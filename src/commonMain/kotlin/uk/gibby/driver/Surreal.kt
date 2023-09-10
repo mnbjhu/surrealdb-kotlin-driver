@@ -41,7 +41,6 @@ class Surreal(private val host: String, private val port: Int = 8000) {
             context.launch {
                 it.incoming.receiveAsFlow().collect {
                     it as Frame.Text
-                    println(it.readText())
                     val response = try {
                         surrealJson.decodeFromString(RpcResponseSerializer, it.readText())
                     } catch (e: Exception) {
@@ -97,7 +96,6 @@ class Surreal(private val host: String, private val port: Int = 8000) {
         val request = RpcRequest(id, method, params)
         val channel = Channel<JsonElement>(1)
         requests[id] = channel
-        println(request)
         (connection ?: throw Exception("SurrealDB: Websocket not connected")).sendSerialized(request)
         return channel.receive()
     }
