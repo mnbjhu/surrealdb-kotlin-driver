@@ -43,7 +43,7 @@ db.use("ns", "db")
 <b>Creating a records</b>
 ```kotlin
 // Create a record from a JSON object
-db.create("user").content(buildJsonObject( put("username", "John"), put("password", "1234")))
+db.create("user").content(buildJsonObject{ put("username", "John"); put("password", "1234")})
 
 // Create a record from a @Serializable object
 @Serializable
@@ -99,8 +99,12 @@ db.delete("user")
 <b>Querying records</b>
 ```kotlin
 val result = db.query(
-    "SELECT * FROM user WHERE username = $username AND password = $password\n" +
-    "ORDER BY username;",
+    """
+    SELECT *
+    FROM user
+    WHERE username = $username AND password = $password
+    ORDER BY username;
+    """,
     bind("username", "John"),
     bind("password", "1234")
 )
@@ -141,8 +145,10 @@ assert(post.author.id == "user:123")
 
 // You can fetch a record from a reference
 val queryResult = query(
-    "SELECT * FROM post WHERE author = $author\n" +
-    "FETCH author LIMIT 1;",
+    """
+    SELECT * FROM post WHERE author = $author
+    FETCH author LIMIT 1;
+    """,
     bind("author", "John")
 )
 val post = queryResult.first().data<List<Post>>()[0]
