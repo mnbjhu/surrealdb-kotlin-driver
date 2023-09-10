@@ -128,6 +128,7 @@ $dokka.location:uk.gibby.driver.rpc//delete/uk.gibby.driver.Surreal#kotlin.Strin
 $dokka.location:uk.gibby.driver.rpc//delete/uk.gibby.driver.Surreal#uk.gibby.driver.model.Thing[*]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/delete.html
 $dokka.location:uk.gibby.driver.rpc//info/uk.gibby.driver.Surreal#/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/info.html
 $dokka.location:uk.gibby.driver.rpc//infoAsJson/uk.gibby.driver.Surreal#/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/info-as-json.html
+$dokka.location:uk.gibby.driver.rpc//insert/uk.gibby.driver.Surreal#kotlin.String/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/insert.html
 $dokka.location:uk.gibby.driver.rpc//invalidate/uk.gibby.driver.Surreal#/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/invalidate.html
 $dokka.location:uk.gibby.driver.rpc//kill/uk.gibby.driver.Surreal#kotlin.String/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/kill.html
 $dokka.location:uk.gibby.driver.rpc//let/uk.gibby.driver.Surreal#kotlin.String#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/let.html
@@ -159,6 +160,11 @@ $dokka.location:uk.gibby.driver.rpc/CreateIdBuilder///PointingToDeclaration/sur
 $dokka.location:uk.gibby.driver.rpc/CreateIdBuilder/CreateIdBuilder/#kotlin.String#uk.gibby.driver.Surreal/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-create-id-builder/-create-id-builder.html
 $dokka.location:uk.gibby.driver.rpc/CreateIdBuilder/content/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-create-id-builder/content.html
 $dokka.location:uk.gibby.driver.rpc/CreateIdBuilder/jsonContent/#kotlinx.serialization.json.JsonObject/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-create-id-builder/json-content.html
+$dokka.location:uk.gibby.driver.rpc/InsertBuilder///PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-insert-builder/index.html
+$dokka.location:uk.gibby.driver.rpc/InsertBuilder/InsertBuilder/#kotlin.String#uk.gibby.driver.Surreal/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-insert-builder/-insert-builder.html
+$dokka.location:uk.gibby.driver.rpc/InsertBuilder/content/#kotlin.Array[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-insert-builder/content.html
+$dokka.location:uk.gibby.driver.rpc/InsertBuilder/content/#kotlin.collections.List[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-insert-builder/content.html
+$dokka.location:uk.gibby.driver.rpc/InsertBuilder/jsonContent/#kotlin.collections.List[kotlinx.serialization.json.JsonObject]/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-insert-builder/json-content.html
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder///PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/index.html
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/UpdateBuilder/#kotlin.String#uk.gibby.driver.Surreal/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/-update-builder.html
 $dokka.location:uk.gibby.driver.rpc/UpdateBuilder/content/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/surrealdb-driver/uk.gibby.driver.rpc/-update-builder/content.html
